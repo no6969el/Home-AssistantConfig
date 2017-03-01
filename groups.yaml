@@ -1,0 +1,8 @@
+kids_area:
+  entities:
+  - input_select.kids_sensor_preset
+  - sensor.kids_room_temperature
+  - light.kids
+  - binary_sensor.kids_room_motion
+  name: Kid's Area
+  view: true

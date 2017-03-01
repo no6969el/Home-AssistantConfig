@@ -1,0 +1,1008 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: 26.0681
+  longitude: -80.2766
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 1
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+
+  customize:
+  #hidden/force view lights 
+    light.kitchen_2:
+     hidden: true
+    light.dining_room_2:
+     hidden: true
+    light.kids_room:
+     hidden: true
+    light.living_room_2:
+     hidden: true
+    light.bedroom:
+     hidden: true
+    group.all_lights:
+     hidden: true
+      
+    
+  #renamed lights
+    light.kids:
+     friendly_name: Aiden/Milo Room
+    light.master_bedroom:
+     friendly_name: Master Bedroom
+    light.dining_room:
+     friendly_name: Dining Area
+    
+    
+  #renamed media players     
+    media_player.tv:
+     friendly_name: Living Room TV
+    media_player.family_room_home:
+     friendly_name: Google Home Main
+    media_player.unnamed_device:
+     friendly_name: Home Assistant Voice
+     
+  #renamed scripts/automations
+    script.aiden_dinner_time:
+     friendly_name: Aiden it's Dinnertime
+    automation.its_getting_late:
+     friendly_name: Fifteen Minute Reminder "Its getting late"
+    automation.lights_off_at_night:
+     friendly_name: Lights Turn off at Midnight
+    automation.Noel_driving_today:
+     friendly_name: Turn off if you have a meeting tommorrow
+    automation.lights_on_in_the_morning:
+     friendly_name: Lights Turn on to 1% @ 7:20am
+    
+     
+  #hidden media players   
+    media_player.plex_web_firefox:
+     hidden: true
+    media_player.kenny_bed_room:
+     hidden: true
+    media_player.kenny_tv:
+     hidden: true
+    media_player.lg_m1:
+     hidden: true
+    media_player.galaxy_s6:
+     hidden: true
+     
+   #hidden/force view sensors
+    sensor.dark_sky_daily_low_temperature:
+     hidden: true
+    sensor.dark_sky_daily_high_temperature:
+     hidden: true
+    sensor.dark_sky_nearest_storm_distance:
+     hidden: false
+    sensor.disk_use_home:
+     hidden: true
+    sun.sun:
+     hidden: true
+    
+#front switch card groups /can be hidden     
+group:
+  default_view:
+    view: yes
+    entities:
+     - group.home_mode
+     - group.living_area
+     - group.kitchen
+     - group.kids_area
+     - group.master_room
+     - group.noels_desk
+     - group.garden
+        
+  #Weather:
+    #view: yes
+    #name: Weather
+    #entities:
+     #- group.current_weather
+     
+  #Plex:
+    #view: yes
+    #name: Plex
+    #entities:
+     #- group.plex_sensor
+     
+  chromecasts:
+    view: yes
+    name: Chromecasts
+    entities:
+     - media_player.tv
+  
+  people:
+    name: People 
+    entities:
+     - device_tracker.bnaorezl
+     - device_tracker.androidd2ed287efba22d04
+ 
+  #Current_Weather:
+    #name: Weather Sensors
+    #entities:
+     #- sensor.dark_sky_temperature
+     #- sensor.dark_sky_nearest_storm_distance  
+   
+  Home_Assistant:
+    name: Home Assistant
+    view: yes
+    entities:
+     - group.home_assistants  
+     
+  automations:
+    name: Automations
+    view: yes
+    entities:
+     - automation.kids_motion_full_on
+     - automation.kids_motion_auto
+     
+     
+  #all_lights:
+     #name: All Lights
+     #view: yes
+     #entities:
+      #- group.all_lights
+     
+  home_mode:
+    name: Home Mode
+    entities:
+     - input_select.home_mode_preset
+         
+  #Plex_sensor:
+    #name: Plex sensor
+    #entities:
+      #- sensor.plex
+     
+      
+  kitchen:
+     name: Kitchen
+     entities:
+      - light.kitchen
+      - input_slider.kitchen_room_lux
+  
+  living_area:
+   name: Living Area
+   control: hidden
+   entities:
+     - light.living_room
+     - input_slider.living_room_lux
+     - light.dining_room
+     - input_slider.dining_room_lux
+        
+  kids_area:
+    name: Kid's Area
+    entities:
+     - input_select.kids_sensor_preset
+     - sensor.kids_room_temperature
+     - binary_sensor.kids_room_motion
+     - light.kids
+       
+  master_room:
+     name: Our Room
+     entities:
+      - light.master_bedroom
+      - input_slider.bedroom_lifx_lux
+      - input_select.lifx_mood_set
+      - input_select.lifx_nba_mood_set
+                  
+  main_lights:
+     name: Main Lights
+     entities:
+      - light.kitchen
+      - light.living_room
+  
+  home_assistants:    
+      name: Home Assistants
+      entities:
+      - media_player.family_room_home  
+      - media_player.unnamed_device
+
+  garden:
+      name: Garden Care
+      entities:
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_nearest_storm_distance
+#Input selection 
+input_select:
+
+  home_mode_preset:
+     name: Home Mode
+     options:
+      - Set home status
+      - Home
+      - Away
+      - Grandma
+      - Vacation
+     initial: Set home status
+     icon: mdi:home
+     
+  kids_sensor_preset:
+     name: Motion Preset
+     options:
+      - Auto
+      - Enabled
+      - Disabled
+     initial: Auto
+     icon: mdi:flash-red-eye
+     
+  lifx_mood_set:
+     name: Room Mood
+     options:
+      - Set your mood
+      - Clear blue sky
+      - Halloween 
+      - Nature
+      - Woo Hoo
+     initial: Set your mood
+     icon: mdi:white-balance-incandescent
+     
+  lifx_nba_mood_set:
+     name: NBA Teams
+     options:
+      - Select team
+      - Orlando Magic
+      - Miami Heat
+     initial: Select team
+     icon: mdi:dribbble
+      
+      
+#Input sliders
+
+input_slider:
+
+  bedroom_lifx_lux:
+    name: Brightness
+    initial: 240
+    min: 10
+    max: 254
+    step: 1
+    
+  living_room_lux:
+    name: Brightness
+    initial: 240
+    min: 1
+    max: 240
+    step: 1
+    
+  dining_room_lux:
+    name: Brightness
+    initial: 240
+    min: 1
+    max: 240
+    step: 1
+    
+  kitchen_room_lux:
+    name: Brightness
+    initial: 240
+    min: 1
+    max: 240
+    step: 1
+    
+
+
+    
+
+frontend:
+
+http:
+ api_password: !secret http_password
+ base_url: !secret http_url
+
+
+updater:
+
+discovery:
+
+conversation:
+
+sun:
+
+config:
+
+tts:
+  - platform: google
+  
+
+## Connected Lights
+
+light:
+# Philips Hue
+ - platform: hue
+   host: !secret hue_host
+   allow_unreachable: false
+   scan_interval: 2
+   
+# Lifx
+ - platform: lifx
+   scan_interval: 2
+   broadcast: !secret lifx_broadcast
+
+# Media Players 
+media_player:
+ - platform: plex
+ - platform: cast
+ - platform: vlc
+
+## Sensors
+#Plex    
+sensor 1: 
+ - platform: plex
+   host: !secret plex_host
+   port: !secret plex_port
+   username: !secret plex_username
+   password: !secret plex_password
+
+#Darksky Weather
+sensor 2:
+ - platform: darksky
+   api_key: !secret darksky_api
+   monitored_conditions:
+    - nearest_storm_distance
+    - temperature
+    - temperature_max
+    - temperature_min
+    - humidity
+    - wind_speed
+    - summary
+    
+#System Monitor
+sensor 3:   
+ - platform: systemmonitor
+   resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: processor_use 
+    
+#Philips Hue Motion Sensor (Motion/Presense)
+binary_sensor:
+ - platform: rest
+   resource: !secret kidsroom_sensor
+   value_template: '{{ value_json.state.presence }}'
+   scan_interval: 2
+   name: 'Kids Room Motion'
+ 
+binary_sensor 2:
+ - platform: rest
+   resource: !secret bedroom_sensor
+   value_template: '{{ value_json.state.presence }}'
+   scan_interval: 2
+   name: 'Bedroom Motion'
+
+  
+
+#Philips Hue Motion Sensor (Light/Lux)
+sensor 5:
+ - platform: rest
+   resource: !secret kidslux_sensor
+   value_template: '{{ value_json.state.lightlevel }}'
+   unit_of_measurement: Lux
+   name: 'Kids Lux'
+   
+  
+#Philips Hue Motion Sensor (Temp)
+sensor 6:
+ - platform: rest
+   resource: !secret kidsroomtemp_sensor
+   value_template: '{{ (value_json.state.temperature | float / 100 * 9 / 5  + 32) | round(0) }}'
+   unit_of_measurement: °F
+   name: 'Kids Room Temperature'
+   
+   
+#asuswrt device tracker for automation etc 
+  
+#device_tracker:
+ #- platform: asuswrt
+   #host: 10.0.0.1
+   #username: no6969el
+   #password: Phenom6969!
+ 
+ 
+   #front side panel to add access to url from HA system
+
+#Page Sidebar
+panel_iframe:
+ #router:
+    #title: 'Router'
+    #icon: mdi:router-wireless
+    #url: !secret router_url
+  deluge:
+    title: 'Downloads'
+    icon: mdi:cloud-download
+    url: !secret deluge_url
+
+
+##Scenes
+scene:
+
+#grouped light scenes
+ - name: Grandma Mode
+   entities:
+     light.living_room:
+       state: on
+       brightness: 200
+     light.dining_room:
+       state: on
+       brightness: 200
+     light.kitchen:
+       state: on
+       brightness: 200
+#NBA Team Colors         
+ - name: Go Magic
+   entities:
+     light.master_bedroom:
+       state: on
+       #magic blue [0,125,197]
+       #magic silver [196,206,211]
+       #magic white [255,255,255]
+       rgb_color: [0,125,197]
+       brightness: 200        
+ - name: Go Heat 
+   entities:
+     light.master_bedroom:
+       state: on
+       #heat red [152,0,46]
+       #heat yellow [249,160,27]
+       rgb_color: [152,0,46]
+       brightness: 200
+#Other Moods
+ - name: Woo Hoo
+   entities:
+     light.master_bedroom:
+       state: on
+       rgb_color: [215,20,20]        
+       brightness: 200  
+#Holidays
+ - name: Halloween
+   entities:
+     light.master_bedroom:
+       state: on
+       rgb_color: [255,145,0]
+       brightness: 200  
+#Natural light
+ - name: Clear Blue Sky
+   entities:
+     light.master_bedroom:
+       state: on
+       rgb_color: [64,156,255]
+       brightness: 200 
+##All other natural light RGB link below
+##www.c4dcafe.com/ipb/forums/topic/54680-rgb-kelvin-values-for-popular-light-types
+##Automations
+automation:
+#Home announcement automations
+- alias: 'Noel leaving work'  
+  trigger:
+      platform: time
+      after: "18:00:00"
+  condition:
+      condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+  action:
+      service: script.turn_on
+      entity_id: script.noel_leaving_work
+      
+  #today i am driving alert
+
+- alias: 'Noel driving today'
+  trigger:
+      platform: time
+      after: "7:45:00"
+  condition:
+      condition: time
+      weekday:
+        - tue
+        - thu        
+  action:
+      service: script.turn_on
+      entity_id: script.i_drive_today
+
+  #today franz is driving alert
+
+- alias: 'franz driving today'
+  trigger:
+      platform: time
+      after: "7:45:00"
+  condition:
+      condition: time
+      weekday:
+        - mon
+        - wed        
+  action:
+      service: script.turn_on
+      entity_id: script.franz_drives_today
+      
+  #420
+  
+- alias: 'It is 420'
+  trigger:
+      platform: time
+      after: "16:20:02"
+  condition:
+      condition: time
+      weekday:
+        - sat
+        - sun        
+  action:
+      service: script.turn_on
+      entity_id: script.four_twenty
+
+ #good morning its friday
+
+- alias: 'good morning its friday'
+  trigger:
+      platform: time
+      after: "7:50:00"
+  condition:
+      condition: time
+      weekday:
+        - fri       
+  action:
+      service: script.turn_on
+      entity_id: script.friday
+      
+ #It is noon 12:00
+
+- alias: 'its noon'
+  trigger:
+      platform: time
+      after: "12:00:00"       
+  action:
+      service: script.turn_on
+      entity_id: script.noon_time
+ 
+ ##its getting late reminder before midnight on work days
+
+#- alias: 'its getting late'
+  #trigger:
+      #platform: time
+      #after: "23:30:00"
+  #condition:
+      #condition: time
+      #weekday:
+        #- mon
+        #- tue
+        #- wed
+        #- thu
+        #- sun        
+  #action:
+     #service: script.turn_on
+      #entity_id: script.night_time 
+
+ 
+ #lights turn off at 12am or later
+     
+- alias: "lights off at night"
+  trigger:
+     platform: time
+     after: "23:59:59"
+  action:
+     service: homeassistant.turn_off
+     entity_id: group.all_lights
+  
+ #lights on in the morning  
+     
+- alias: "lights on in the morning"
+  trigger:
+     platform: time
+     after: "07:15:00"
+  condition:
+      condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri     
+  action:
+     service: light.turn_on
+     entity_id: 
+      - light.master_bedroom
+     data_template:
+      brightness: 200
+      transition: 120
+      rgb_color: 252,249,243
+ 
+     #service: script.turn_on
+     #entity_id: script.aiden_wake_nap 
+#condition:
+     #condition: time
+     #after: '15:15:00'
+     #before: '20:00:00'
+     #weekday:
+      #- mon
+      #- tue
+      #- wed
+      #- thu
+      #- fri
+      #- sat
+      #- sun
+  #action:
+     #service: light.turn_on
+     #entity_id: light.kids
+     #data_template:
+      #brightness: 200
+- alias: "Kids Auto Switch"
+  trigger:
+     platform: state
+     entity_id: input_select.kids_sensor_preset
+     to: "Auto"
+  action:
+     service: homeassistant.turn_on
+     entity_id:
+      - automation.kids_motion_auto
+      
+      
+- alias: "Kids Enable Switch"
+  trigger:
+     platform: state
+     entity_id: input_select.kids_sensor_preset
+     to: "Enabled"
+  action:
+     service: homeassistant.turn_on
+     entity_id:
+      - automation.kids_motion_full_on
+      
+         
+- alias: "Kids Disable Switch"
+  trigger:
+     platform: state
+     entity_id: input_select.kids_sensor_preset
+     to: "Disabled"
+  action:
+     service: homeassistant.turn_off
+     entity_id: 
+      - automation.kids_motion_full_on
+      - automation.kids_motion_auto
+      
+- alias: "Kids auto to enable"
+  trigger:
+     platform: state
+     entity_id: input_select.kids_sensor_preset
+     from: 'Auto'
+     to: 'Enabled'
+  action:
+     service: homeassistant.turn_off
+     entity_id:
+      - automation.kids_motion_auto
+      
+- alias: "Kids Enable to Auto"
+  trigger:
+     platform: state
+     entity_id: input_select.kids_sensor_preset
+     from: 'Enabled'
+     to: 'Auto'
+  action:
+     service: homeassistant.turn_off
+     entity_id:
+      - automation.kids_motion_full_on
+      
+- alias: "Kids Motion auto" 
+  trigger: 
+     platform: state
+     entity_id: binary_sensor.kids_room_motion
+     from: 'off'
+     to: 'on'
+  condition:
+     condition: time
+     after: '09:00:00'
+     before: '20:00:01'
+     weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+     service: light.turn_on
+     entity_id: light.kids
+     data_template:
+      brightness: 200
+            
+- alias: "Bedroom Motion auto" 
+  trigger: 
+     platform: state
+     entity_id: binary_sensor.bedroom_motion
+     from: 'off'
+     to: 'on'
+  condition:
+     condition: time
+     after: '09:00:00'
+     before: '23:00:01'
+     weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+     service: light.turn_on
+     entity_id: light.master_bedroom
+     data_template:
+      brightness: 240
+     
+- alias: "Kids Motion Full on" 
+  trigger: 
+     platform: state
+     entity_id: binary_sensor.kids_room_motion
+     from: 'off'
+     to: 'on'
+  condition:
+     condition: time
+     after: '00:00:01'
+     before: '23:59:59'
+     weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+     service: homeassistant.turn_on
+     entity_id: light.kids
+     data_template:
+      brightness: 200
+      
+
+           
+#home mode automation
+- alias: "Grandma mode"
+  trigger:
+     platform: state
+     entity_id: input_select.home_mode_preset
+     to: "Grandma"
+  action:
+     service: script.turn_on
+     entity_id: 
+      - script.grandma_mode
+#lifx automations
+- alias: "lifx mood woohoo"
+  trigger:
+     platform: state
+     entity_id: input_select.lifx_mood_set
+     to: "Woo Hoo"
+  action:
+     service: script.turn_on
+     entity_id: script.woo_hoo
+     
+- alias: "lifx mood Orlando Magic"
+  trigger:
+     platform: state
+     entity_id: input_select.lifx_nba_mood_set
+     to: "Orlando Magic"
+  action:
+     service: script.turn_on
+     entity_id: script.go_magic
+
+
+- alias: "lifx mood Miami Heat"
+  trigger:
+     platform: state
+     entity_id: input_select.lifx_nba_mood_set
+     to: "Miami Heat"
+  action:
+     service: script.turn_on
+     entity_id: script.go_heat
+- alias: "lifx mood Halloween"
+  trigger:
+     platform: state
+     entity_id: input_select.lifx_mood_set
+     to: "Halloween"
+  action:
+     service: script.turn_on
+     entity_id: script.halloween
+- alias: "lifx mood clear blue sky"
+  trigger:
+     platform: state
+     entity_id: input_select.lifx_mood_set
+     to: "Clear blue sky"
+  action:
+     service: script.turn_on
+     entity_id: script.clear_blue_sky
+
+#light sliders
+- alias: "Bedroom Light - Adjust Lux"
+  trigger:
+    platform: state
+    entity_id: input_slider.bedroom_lifx_lux
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.master_bedroom
+        brightness: '{{ trigger.to_state.state | int }}'
+        
+- alias: "Living Light - Adjust Lux"
+  trigger:
+    platform: state
+    entity_id: input_slider.living_room_lux
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.living_room
+        brightness: '{{ trigger.to_state.state | int }}'
+        
+- alias: "Dining Light - Adjust Lux"
+  trigger:
+    platform: state
+    entity_id: input_slider.dining_room_lux
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.dining_room
+        brightness: '{{ trigger.to_state.state | int }}'
+        
+- alias: "Kitchen Light - Adjust Lux"
+  trigger:
+    platform: state
+    entity_id: input_slider.kitchen_room_lux
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.kitchen
+        brightness: '{{ trigger.to_state.state | int }}'
+    
+
+##Scripts 
+script:
+#home announcement scripts
+ aiden_dinner_time:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Aiden, it is time to eat dinner, come sit down.'
+         
+        
+ noel_leaving_work:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Daddy is on his way home.'
+         
+        
+ friday:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Good morning, it is Friday finally.  Lets enjoy it'
+
+        
+ noon_time:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'It is now Noon in this bitch, put yo hands in the air and wave them like you just dont care.'
+         
+
+ night_time:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Its getting late,I recommend preparing for sleep.'
+
+        
+ four_twenty:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Is anyone around? It is 4:20'
+
+        
+ i_drive_today:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Good morning, today you should be driving'
+         
+
+ franz_drives_today:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Good morning, today Fraanz should be driving'
+      
+
+ aiden_nap_time:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unnamed_device
+       data:
+         message: 'Aiden nap time'
+
+   
+ aiden_nap_wake:
+   sequence:
+     - service: tts.google_say
+       entity_id: media_player.unamed_device
+       data:
+         message: 'If Aiden took a nap earlier he should wake soon. no later than 4 pm'
+         
+#home mode scripts
+ grandma_mode:
+   sequence:
+     - service: homeassistant.turn_on
+       entity_id: scene.grandma_mode        
+        
+
+#motion scripts
+ kids_motion_full_on:
+   sequence:
+     - service: homeassistant.turn_on
+       entity_id: automation.kids_motion_full_on
+       
+ kids_motion_full_off:
+   sequence:
+     - service: homeassistant.turn_off
+       entity_id: 
+        - automation.kids_motion_full_on
+        
+                   
+ #automation_kids_motion_on:
+   #sequence:
+     #- service: homeassistant.turn_on
+       #entity_id: 
+        #- automation.aiden_motion_schedule_after_naps
+        #- automation.aiden_motion_schedule_before_nap_weekday
+        #- automation.aiden_motion_schedule_before_nap_weekends
+        
+ kids_motion_off:
+   sequence:
+     - service: homeassistant.turn_off
+       entity_id: 
+        - automation.kids_motion_full_on
+    
+               
+ #disable_manual_input:
+   #sequence:
+     #- service: homeassistant.turn_off
+       #entity_id:
+        #- automation.kids_motion_full_on
+
+#lifx scripts
+ woo_hoo:
+   sequence:
+     - service: scene.turn_on
+       entity_id: scene.woo_hoo
+       
+ go_magic:
+   sequence:
+     - service: scene.turn_on
+       entity_id: scene.go_magic
+       
+ go_heat:
+   sequence:
+     - service: scene.turn_on
+       entity_id: scene.go_heat
+       
+ halloween:
+   sequence:
+     - service: scene.turn_on
+       entity_id: scene.halloween
+ clear_blue_sky:
+   sequence:
+     - service: scene.turn_on
+       entity_id: scene.clear_blue_sky
+   
+       
+
+
+ 
+
