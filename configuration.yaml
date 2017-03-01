@@ -112,11 +112,8 @@ group:
     entities:
      - media_player.tv
   
-  people:
-    name: People 
-    entities:
-     - device_tracker.bnaorezl
-     - device_tracker.androidd2ed287efba22d04
+  #people:
+    
  
   #Current_Weather:
     #name: Weather Sensors
@@ -391,11 +388,6 @@ sensor 6:
    
 #asuswrt device tracker for automation etc 
   
-#device_tracker:
- #- platform: asuswrt
-   #host: 10.0.0.1
-   #username: no6969el
-   #password: Phenom6969!
  
  
    #front side panel to add access to url from HA system
